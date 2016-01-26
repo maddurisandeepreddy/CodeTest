@@ -1,0 +1,49 @@
+<h1>Appointments#new</h1>
+<%= form_for(@appointment) do |f| %>
+<% if @appointment.errors.any? %>
+   <div id="error_explanation">
+     <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this form from being saved:</h2>
+
+     <ul>
+     <% @appointment.errors.full_messages.each do |msg| %>
+       <li><%= msg %></li>
+     <% end %>
+     </ul>
+   </div>
+ <% end %>
+
+ <div>
+   <%= f.label :Doctor %><br />
+   <%= f.select :doctor_id, @doctors.all.collect{|d| [d.name, d.id]} %>
+ </div>
+ <div>
+   <%= f.label :Customer %><br />
+   <%= f.select :customer_id, @customers.collect{|d| [d.name, d.id]} %>
+ </div>
+ <div>
+   <%= f.label :Pet_name %><br />
+   <%= f.text_field :pet %>
+ </div>
+ <div>
+   <%= f.label :send_remider_? %><br />
+   <%= f.select :send_remider, [['Yes', 1], ['No', 0]] %>
+ </div>
+
+ <div>
+   <%= f.label :reason_for_visit %><br />
+   <%= f.text_area :reason %>
+ </div>
+
+
+   <div>
+   <%= f.label :visit_date_time %><br />
+   <%= f.datetime_select :visit_date %>
+ </div>
+
+<br/>
+
+ <div>
+   <%= f.submit "create" %>
+ </div>
+
+<% end %>

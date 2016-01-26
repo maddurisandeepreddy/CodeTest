@@ -1,0 +1,30 @@
+<h1>Customer#index</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Customer Name</th>
+    <th>appointments</th>
+    <th>first appointment at</th>
+    <th>Pet</th>
+  </tr>
+  </thead>
+  <% @customers.each do |customer| %>
+    <tr>
+    <td>
+      <%= customer.name %>
+    </td>
+    <td>
+      <%= customer.appointments.count %>
+    </td>
+    <%if customer.appointments.count > 0 %>
+    <td>
+      <%= customer.appointments.first.try(:visit_date).strftime('%b %d @ %H:%M %p') %>
+    </td>
+    <td>
+      <%= customer.appointments.first.try(:pet) %>
+    </td>
+    <% end %>
+    </tr>
+    <% end %>
+</table>

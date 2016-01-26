@@ -1,0 +1,39 @@
+<h1>Doctors#new</h1>
+<%= form_for(@doctor) do |f| %>
+<% if @doctor.errors.any? %>
+  <div>
+    <h2><%= pluralize(@doctor.errors.count, "error") %> prohibited this form from being saved:</h2>
+
+    <ul>
+    <% @doctor.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div>
+    <%= f.label :Name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <%= f.fields_for :profile do |profile_form| %>
+    <%= profile_form.label :address %>
+    <%= profile_form.text_field :address %>
+    <br/>
+    <%= profile_form.label :city %>
+    <%= profile_form.text_field :city %>
+    <br/>
+    <%= profile_form.label :zip %>
+    <%= profile_form.text_field :zip %>
+    <br/>
+    <%= profile_form.label :school %>
+    <%= profile_form.text_field :school %>
+    <br/>
+    <%= profile_form.label :Years_of_practice %>
+    <%= profile_form.text_field :yop %>
+  <% end %>
+<div class="actions">
+  <%= f.submit %>
+</div>
+
+<% end %>
